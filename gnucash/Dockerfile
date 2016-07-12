@@ -2,12 +2,44 @@ FROM debian:8
 
 MAINTAINER Herbert Mühlburger "mail@muehlburger.at"
 
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN echo 'deb http://ftp.de.debian.org/debian/ stable main contrib non-free' >> /etc/apt/sources.list
+RUN echo 'deb-src http://ftp.de.debian.org/debian/ stable main contrib non-free' >> /etc/apt/sources.list
+RUN echo 'deb http://security.debian.org/ stable/updates main contrib non-free' >> /etc/apt/sources.list
+RUN echo 'deb-src http://security.debian.org/ stable/updates main contrib non-free' >> /etc/apt/sources.list
+
 # Update
 RUN apt-get -y update
 
 # Install git
-RUN apt-get install -y git aptitude libboost-all-dev swig doxygen
-
+RUN apt-get install -y \
+    git \
+    swig \
+    doxygen \
+    libxml2-dev \
+    libxslt1-dev \
+    python-dev \
+    apt-utils \
+    autoconf \
+    intltool \
+    libtool \
+    guile-2.0-dev \
+    libglib2.0-dev \
+    build-essential \
+    xsltproc \
+    libui-gxmlcpp-dev \
+    libdbi-dev \
+    libofx-dev \
+    libpython2.7-dev \
+    libgnomecanvas2-dev \
+    libglib2.0-dev \
+    libgtk2.0-dev \
+    libgoffice-0.8-dev \
+    libboost-dev \
+    libdbd-sqlite3 \
+    libwebkit-dev
+        
 # Make ssh dir
 RUN mkdir /root/.ssh/
 
@@ -27,16 +59,7 @@ RUN cd gnucash
 
 WORKDIR /gnucash
 
-RUN echo 'deb http://ftp.de.debian.org/debian/ stable main contrib non-free' >> /etc/apt/sources.list
-RUN echo 'deb-src http://ftp.de.debian.org/debian/ stable main contrib non-free' >> /etc/apt/sources.list
-RUN echo 'deb http://security.debian.org/ stable/updates main contrib non-free' >> /etc/apt/sources.list
-RUN echo 'deb-src http://security.debian.org/ stable/updates main contrib non-free' >> /etc/apt/sources.list
-
-RUN apt-get update
-
-RUN apt-get install -y apt-utils autoconf intltool libtool guile-2.0-dev libglib2.0-dev build-essential
-
-RUN apt-get build-dep gnucash
+#RUN apt-get build-dep gnucash
 
 RUN ./autogen.sh
 
