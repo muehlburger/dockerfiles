@@ -2,16 +2,6 @@ FROM debian:8
 
 MAINTAINER Herbert Mühlburger "mail@muehlburger.at"
 
-# Debian 8.0 (Jessie)   # CURRENT TESTING
-# RUN echo 'deb http://ftp.de.debian.org/debian/ jessie main contrib non-free' > /etc/apt/sources.list
-# deb-src http://ftp.de.debian.org/debian/ jessie main contrib non-free
-# deb http://security.debian.org/ jessie/updates main contrib non-free
-# deb-src http://security.debian.org/ jessie/updates main contrib non-free
-# deb http://ftp.de.debian.org/debian/ jessie-updates main contrib non-free
-# deb-src http://ftp.de.debian.org/debian/ jessie-updates main contrib non-free
-# deb http://ftp.de.debian.org/debian jessie-backports main contrib non-free
-# deb-src http://ftp.de.debian.org/debian jessie-backports main contrib non-free
-
 # Update
 RUN apt-get -y update
 
