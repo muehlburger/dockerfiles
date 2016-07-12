@@ -59,12 +59,10 @@ RUN cd gnucash
 
 WORKDIR /gnucash
 
-#RUN apt-get build-dep gnucash
-
 RUN ./autogen.sh
 
 RUN ./configure --prefix=/opt/gnucash-devel --enable-debug --enable-doxygen --enable-error-on-warning --enable-compile-warnings --enable-ofx
 
-#RUN make
+RUN make
 
-#RUN make install
+RUN make install
